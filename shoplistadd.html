@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+      //list
+      const outputList = document.querySelector("ul");
+      const inp = document.querySelector("input");
+      const btn = document.querySelector("button");
+
+      
+        btn.addEventListener("click", (e) => {
+         console.log("Item Added!"); 
+         const currentValue = inp.value;
+         inp.value = " ";
+      //  using function (e) {    here  works, but it starts by displaying the list with only dot and delete_btn.
+        // list Item
+          const addedList = document.createElement("li");
+          const addedSpan = document.createElement("span");
+          const deleteBtn = document.createElement("button");
+          
+          addedList.appendChild(addedSpan);
+          addedSpan.textContent = currentValue;
+          addedList.appendChild(deleteBtn);
+          deleteBtn.textContent = ("Delete!");
+
+          console.log(addedList);
+          outputList.appendChild(addedList);
+
+          deleteBtn.addEventListener("click", () => {
+          outputList.removeChild(addedList);
+          });
+          inp.focus();   // this starts to focus after tou start adding items. not at the beginning!
+        });
+        
+    </script>
+  </body>
+</html>
